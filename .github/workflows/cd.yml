@@ -1,0 +1,41 @@
+name: CD Pipeline (Manual Deploy)
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to deploy to'
+        required: true
+        default: 'production'
+        type: choice
+        options:
+        - staging
+        - production
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+    
+    - name: Authenticate with Container Registry (Simulated)
+      run: |
+        echo "Logging into Docker Registry..."
+        sleep 1
+        echo "Success."
+      
+    - name: Build & Push Docker Image (Simulated)
+      run: |
+        echo "Building image coderjangra/fs-exp-8:${{ github.sha }}..."
+        sleep 2
+        echo "Pushing image..."
+        sleep 2
+        echo "Successfully pushed coderjangra/fs-exp-8:${{ github.sha }}"
+        
+    - name: Deploy to Kubernetes Cluster (Simulated)
+      run: |
+        echo "Connecting to ${{ github.event.inputs.environment }} K8s cluster..."
+        sleep 1
+        echo "Applying manifests/deployment.yaml..."
+        sleep 2
+        echo "Deployment successful!"
