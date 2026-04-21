@@ -124,7 +124,7 @@ export default function Actions() {
                      </ListItemIcon>
                      <ListItemText 
                         primary={run.display_title || run.head_commit?.message || 'Workflow Run'} 
-                        secondary={\`Branch: \${run.head_branch} • \${new Date(run.created_at).toLocaleString()}\`}
+                        secondary={`Branch: ${run.head_branch} • ${new Date(run.created_at).toLocaleString()}`}
                         primaryTypographyProps={{ color: 'white', fontWeight: 600, noWrap: true }} 
                         secondaryTypographyProps={{ color: 'text.secondary' }}
                      />
